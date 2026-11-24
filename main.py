@@ -12,6 +12,8 @@ PITCH = "We rent out pre-warmed excuses to AI agents: for $0.02 a pop, your agen
 
 def file_pitch() -> None:
     """Write the pitch to /output/entry.txt, nothing else."""
+    if len(PITCH) > 200 or not PITCH.strip() or "\n" in PITCH:
+        raise ValueError("pitch must be a single non-empty line of at most 200 characters")
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as handle:
         handle.write(PITCH)
